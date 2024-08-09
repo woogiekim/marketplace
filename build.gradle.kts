@@ -54,6 +54,7 @@ subprojects {
 
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-web")
+        implementation("org.springframework.boot:spring-boot-starter-validation")
         implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -81,7 +82,6 @@ subprojects {
         verbose.set(true)
         disabledRules.addAll("import-ordering", "no-wildcard-imports", "filename", "indent", "parameter-list-wrapping")
     }
-
 }
 
 project(":api-gateway") {
@@ -103,4 +103,11 @@ project(":discovery-service") {
 
     tasks.getByName<Jar>("jar") { enabled = false }
     tasks.getByName<BootJar>("bootJar") { enabled = true }
+}
+
+project(":user") {
+    dependencies {
+        implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+        implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+    }
 }
